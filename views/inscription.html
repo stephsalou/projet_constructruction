@@ -38,8 +38,8 @@
                             <div class="card-header">
                                 INSCRIPTION
                             </div>
-                            <div class="card-body">
-                               <form id="inscrit" action="" method="post">
+                            <div class="card-body" >
+                               <form id="inscrit" action="" enctype="multipart/form-data" method="post">
                                    <div class="input-group inputs">
                                        <div class="input-group-prepend">
                                            <span class="input-group-text"> <i class="fa fa-address-card" aria-hidden="true"></i> </span>
@@ -65,6 +65,15 @@
                                         <input class="form-control" type="password" placeholder="confirm your password" aria-label="Recipient's password">
                                         <div class="input-group-append">
                                             <span class="input-group-text">PASSWORD</span>
+                                        </div>
+                                    </div>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-file-image    "></i></span>
+                                        </div>
+                                        <input class="form-control" name="photo" id="photo" type="file" placeholder="Recipient's file" aria-label="Recipient's file">
+                                        <div class="input-group-append">
+                                            <span class="input-group-text">PHOTO</span>
                                         </div>
                                     </div>
                                </form>

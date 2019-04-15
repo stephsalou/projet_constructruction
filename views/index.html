@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="static/css/animate.css">
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="static/brands.svg">
-<title>titre</title>
+<title>ACCEUIL</title>
 </head>
 <style>
     body{
@@ -27,18 +27,11 @@
         clear: both;
         
     }
-    #carousel1{
-        margin-bottom: 30px; 
-    }
     .figure>img{
         border-radius: 100% !important;
     }
-    .carousel-inner{
-        height:400px;
-    }
     .carousel-item{
-        width: inherit;
-        height: inherit;
+     height:500px;
     }
     .carousel-caption>h5,.carousel-caption>p{
         color: #000;
@@ -46,75 +39,95 @@
         font-family: "Times New Roman", Times, Baskerville, Georgia, serif;
         
     }
+    .carousel-caption{
+        background-color: rgba(255,255,255,0.6);
+        border-radius: 50%;
+    }
     footer{
         background-color: #222;
         color: #fff;
     }
+    #carousel-item-1{
+        background: url('static/img/Projects-Construction_1600x1066_1600_1066_80_s_c1_c_c.jpg') center;
+        background-size: cover;
+    }
+    #carousel-item-2{
+        background: url('static/img/45964319_xxl.jpg') center ;
+        background-size:cover;
+    }
+    #carousel-item-3{
+        background: url('static/img/shutterstock_617032220.0.jpg') center;
+        background-size: cover;
+    }
+    .brand-site{   
+        height: 30px;
+        width: 30px;
+    }
 </style>    
 <header>    
-                <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-                        <a class="navbar-brand" href="#">Navbar</a>
-                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                          <span class="navbar-toggler-icon"></span>
-                        </button>
-                      
-                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                          <ul class="navbar-nav mr-auto">
-                            <li class="nav-item active ">
-                              <a class="nav-link" href="#">acceuil <span class="sr-only">(current)</span></a>
-                            </li>
-                            <li class="nav-item active">
-                              <a class="nav-link" href="#">outils de gestion</a>
-                            </li>
-                            <li class="nav-item">
-                              <a class="nav-link disabled" href="#">outils de localisation</a>
-                            </li>
-                          </ul>
-                          <form class="form-inline my-5 my-lg-0">
-                           <div class="row">
-                        <div class="input-group col-md-4">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text" id="email"><i class="fa fa-user-circle" aria-hidden="true"></i> </span>
-                                </div>
-                                <input class="form-control" type="text" placeholder="put your mail" aria-label="Recipient'semail" aria-describedby="email">
-                            </div>
-                            <div class="input-group col-md-4">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text" id="password"> <i class="fa fa-user-secret" aria-hidden="true"></i> </span>
-                                </div>
-                                <input class="form-control" type="password" placeholder="put your password" aria-label="Recipient'spassword" aria-describedby="password">
-                            </div>
-                            <input type="submit" class="btn btn-outline-light col-md-4" value="CONNEXION">
-                        </div> 
-                          </form>
-                        </div>
-                      </nav>
-    </header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="#">IsO BATIMENT <img src="static/img/marteau.png" class="brand-site" /> </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+          
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav mr-auto">
+                <li class="nav-item active ">
+                  <a class="nav-link" href="index.html" >acceuil </a>
+                </li>
+                <li class="nav-item ">
+                  <a class="nav-link" href="gestion.html">outils de gestion</a>
+                </li>
+                <li class="nav-item" tabindex="0"  data-toggle="popover" data-trigger="blur" title="prenium veuillez vous connecter" data-content="contenu reservver au utilisateur prenium">
+                  <a class="nav-link disabled " href="position.html">  outils de localisation</a>
+                </li>
+              </ul>
+              <form class="form-inline my-5 my-lg-0">
+               <div class="row">
+            <div class="input-group col-md-4">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="email"><i class="fa fa-user-circle" aria-hidden="true"></i> </span>
+                    </div>
+                    <input class="form-control" type="text" placeholder="put your mail" aria-label="Recipient'semail" aria-describedby="email">
+                </div>
+                <div class="input-group col-md-4">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="password"> <i class="fa fa-user-secret" aria-hidden="true"></i> </span>
+                    </div>
+                    <input class="form-control" type="password" placeholder="put your password" aria-label="Recipient'spassword" aria-describedby="password">
+                </div>
+                <input type="submit" class="btn btn-outline-light col-md-4" value="CONNEXION">
+            </div> 
+              </form>
+            </div>
+          </nav>
+</header>
 <body>
     
-    <div id="carousel-1" class="carousel slide mb-3" data-ride="carousel">
+    <div id="carousel-1" class="carousel slide " data-ride="carousel">
         <ol class="carousel-indicators">
             <li class="active" data-target="#carousel-1" data-slide-to="0" aria-current="location"></li>
             <li data-target="#carousel-1" data-slide-to="1"></li>
             <li data-target="#carousel-1" data-slide-to="2"></li>
         </ol>
         <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img class="d-block w-100 img-fluid mx-auto" src="static/img/bigstock-212076514-1200x801.jpg" alt="">
+            <div class="carousel-item active" id="carousel-item-1">
+                <img class="d-block w-100 img-fluid mx-auto" src="" alt="">
                 <div class="carousel-caption d-none d-md-block">
                     <h5>VOTRE EPANOUISSEMENT</h5>
                     <p>NOTRE SATISFACTION</p>
                 </div>
             </div>
-            <div class="carousel-item">
-                <img class="d-block w-100 img-fluid mx-auto" src="static/img/banner-construction.jpg" alt="">
+            <div class="carousel-item"   id="carousel-item-2" >
+                <img class="d-block w-100 img-fluid mx-auto " style="height:400px;" src="" alt="">
                 <div class="carousel-caption d-none d-md-block">
                     <h5>LES MEILLEURS DEALS</h5>
                     <p>AU MEILLEUR PRIX</p>
                 </div>
             </div>
-            <div class="carousel-item">
-                    <img class="d-block w-100 img-fluid mx-auto" src="static/img/chantier1.jpg" alt="">
+            <div class="carousel-item"  id="carousel-item-3" >
+                    <img class="d-block w-100 img-fluid mx-auto" src="" alt="">
                     <div class="carousel-caption d-none d-md-block">
                         <h5>PLUS DE CONFUSION</h5>
                         <p>MOINS DE CONFLITS</p>
