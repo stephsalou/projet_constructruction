@@ -10036,3 +10036,12 @@ a.text-dark:hover, a.text-dark:focus {
   }
 }
 /*# sourceMappingURL=bootstrap.css.map */
+
+/*#user code */
+.vertical-divider{
+    width: 1px !important;
+    border: 1px solid black !important;
+    height: 100%;
+    margin:0 auto !important;
+    max-height: 100% !important;
+}

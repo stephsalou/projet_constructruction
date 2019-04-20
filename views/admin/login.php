@@ -1,23 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="X-UA-Compatible" content="ie=edge">
-<link rel="stylesheet" href="static/css/bootstrap.css">
-<link rel="stylesheet" href="static/css/bootstrap-grid.css">
-<link rel="stylesheet" href="static/css/bootstrap-reboot.css">
-<link rel="stylesheet" href="static/css/all.min.css">
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../static/css/bootstrap.css">
+    <link rel="stylesheet" href="../static/css/bootstrap-grid.css">
+    <link rel="stylesheet" href="../static/css/bootstrap-reboot.css">
+    <link rel="stylesheet" href="../static/css/all.min.css">
 
-<title>acceuil</title>
+    <title>acceuil</title>
 </head>
 
 
 <style>
     body{
-        background: url('static/img/Construction-technology-ecosystem_1536x1536_500.jpg') center  ;
-        background-size: cover; 
+        background-color:#ACACAC;
     }
     .inputs{
         margin: 15px;
@@ -50,55 +48,55 @@
 
 <div class="container-fluid">
     <div class="row">
-            <div  class=" offset-4 thumbnail animated bounceInDown offset-4">
-                    <div class="card ">
-                        <div class="errorTxt">
+        <div  class=" offset-4 thumbnail animated bounceInDown offset-4">
+            <div class="card ">
+                <div class="errorTxt">
 
+                </div>
+                <div class="card-header">
+                    CONNEXION
+                </div>
+                <div class="card-body">
+                    <form id="connex" action="" method="post">
+                        <div class="input-group inputs">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"> <i class="fa fa-address-card" aria-hidden="true"></i> </span>
+                            </div>
+                            <input class="form-control" type="text" name="username" placeholder="put your username" aria-label="Recipient's email">
+                            <div class="input-group-append">
+                                <span class="input-group-text">EMAIL</span>
+                            </div>
                         </div>
-                            <div class="card-header">
-                                CONNEXION
+                        <div class="input-group inputs">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"> <i class="fa fa-lock" aria-hidden="true"></i> </span>
                             </div>
-                            <div class="card-body">
-                               <form id="connex" action="" method="post">
-                                   <div class="input-group inputs">
-                                       <div class="input-group-prepend">
-                                           <span class="input-group-text"> <i class="fa fa-address-card" aria-hidden="true"></i> </span>
-                                       </div>
-                                       <input class="form-control" type="email" name="email" placeholder="put your mail" aria-label="Recipient's email">
-                                       <div class="input-group-append">
-                                           <span class="input-group-text">EMAIL</span>
-                                       </div>
-                                   </div>
-                                   <div class="input-group inputs">
-                                       <div class="input-group-prepend">
-                                           <span class="input-group-text"> <i class="fa fa-lock" aria-hidden="true"></i> </span>
-                                       </div>
-                                       <input class="form-control" type="password" name="password" placeholder="put your password" aria-label="Recipient's password">
-                                       <div class="input-group-append">
-                                           <span class="input-group-text">PASSWORD</span>
-                                       </div>
-                                   </div>
-                                   <input type="text" class="ignore" hidden readonly name="action" value="connex">
-                               </form>
+                            <input class="form-control" type="password" name="password" placeholder="put your password" aria-label="Recipient's password">
+                            <div class="input-group-append">
+                                <span class="input-group-text">PASSWORD</span>
                             </div>
-                 <div class="card-footer">
-                              <input class="btn btn-success btn-lg" style="width:100%" type="submit" form="connex" value="SE CONNECTER" >
+                        </div>
+                        <input type="text" class="ignore" hidden readonly name="action" value="connex">
+                    </form>
+                </div>
+                <div class="card-footer">
+                    <input class="btn btn-success btn-lg" style="width:100%" type="submit" form="connex" value="SE CONNECTER" >
 
-                      </div>
-             </div>
+                </div>
             </div>
+        </div>
     </div>
-    
-   
+
+
 </div>
 
 
-<script src="static/js/jquery-3.3.1.min.js"></script>
-<script src="static/js/bootstrap.js"></script>
-<script src="static/js/bootstrap.bundle.js"></script>
-<script src="static/js/jquery.validate.min.js"></script>
+<script src="../static/js/jquery-3.3.1.min.js"></script>
+<script src="../static/js/bootstrap.js"></script>
+<script src="../static/js/bootstrap.bundle.js"></script>
+<script src="../static/js/jquery.validate.min.js"></script>
 <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
-<script src="static/js/all.js"></script>
+<script src="../static/js/all.js"></script>
 <script>
     $(function () {
 
@@ -113,9 +111,8 @@
             errorElement : 'div',
             errorLabelContainer: '.errorTxt',
             rules: {
-                email: {
+                username: {
                     required: true,
-                    email: true,
                     minlength: 6,
                     maxlength: 40
                 },
@@ -127,8 +124,7 @@
             },
             messages: {
                 email: {
-                    required: "vous devez avoir un email pour vous inscrire",
-                    email: "entrez un email valid",
+                    required: "vous devez avoir un nom d'utilisateur pour vous connecter",
                     minlength: "vous email doit etre au dessus de 5 characteres",
                     maxlength: 'votre email doit etre en dessous de 40 charactere'
                 },
@@ -147,7 +143,7 @@
             submitHandler: function (form) {
                 var formData = new FormData(form);
                 $.ajax({
-                    url: '../controller/user_controller.php',
+                    url: '../../controller/admin_controller.php',
                     type: 'POST',
                     dataType: 'json',
                     data: formData,

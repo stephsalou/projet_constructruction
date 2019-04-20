@@ -1,97 +1,293 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="X-UA-Compatible" content="ie=edge">
-<link rel="stylesheet" href="static/css/bootstrap.css">
-<link rel="stylesheet" href="static/css/bootstrap-grid.css">
-<link rel="stylesheet" href="static/css/bootstrap-reboot.css">
-<link rel="stylesheet" href="static/css/all.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
-<link rel="stylesheet" href="style.css">
-<title>acceuil</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="static/css/bootstrap.css">
+    <link rel="stylesheet" href="static/css/bootstrap-grid.css">
+    <link rel="stylesheet" href="static/css/bootstrap-reboot.css">
+    <link rel="stylesheet" href="static/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <title>acceuil</title>
 </head>
 <style>
-    body{
-        background: url('static/img/2.A-PM-CM-Services---BART-HMC-Staff-On-Site.jpg') center ;
-        background-size:center;
+    body {
+        background: url('static/img/2.A-PM-CM-Services---BART-HMC-Staff-On-Site.jpg') center;
+        background-size: cover;
     }
-    .inputs{
+
+    .inputs {
         margin: 15px;
     }
-    .card{
-        margin-top: 40%;
-        background-color: rgba(255,255,255,0.5);
+
+    .card {
+        margin-top: 25vh;
+        background-color: rgba(255, 255, 255, 0.5);
     }
-    .thumbnail{
-        margin:auto auto;
+
+    .thumbnail {
+        margin: auto auto;
+    }
+
+    .Verror {
+        height: 100%;
+        font-size: 100%;
+        box-shadow: 0px 0px 5px 3px  rgba(200,020,050,0.6);
+    }
+    .Vsuccess {
+        height: 100%;
+        font-size: 100%;
+        box-shadow:0px 0px 5px 3px rgba(22,209,10,0.6);
+    }
+
+    #profilModalImg {
+        max-width: 100%;
+        height: auto;
+    }
+    #profilModalImg{
+        height: 70vh;
+    }
+    .errorTxt{
+        margin: auto;
+        font-weight: 700;
+        font-size: large;
+        border-radius: 30% ;
     }
 </style>
 <body>
-
 <div class="container-fluid">
     <div class="row">
-            <div  class=" offset-4 thumbnail animated bounceInDown offset-4">
-                    <div class="card ">
-                            <div class="card-header">
-                                INSCRIPTION
+        <div class=" offset-4 thumbnail animated bounceInDown offset-4">
+            <div class="card ">
+                <div class="errorTxt">
+
+                </div>
+                <div class="card-header">
+                    INSCRIPTION
+                </div>
+                <div class="card-body">
+                    <form id="inscrit" action="../controller/user_controller.php" enctype="multipart/form-data"
+                          method="post">
+                        <div class="input-group inputs">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"> <i class="fa fa-address-card" aria-hidden="true"></i> </span>
                             </div>
-                            <div class="card-body" >
-                               <form id="inscrit" action="" enctype="multipart/form-data" method="post">
-                                   <div class="input-group inputs">
-                                       <div class="input-group-prepend">
-                                           <span class="input-group-text"> <i class="fa fa-address-card" aria-hidden="true"></i> </span>
-                                       </div>
-                                       <input class="form-control" type="email" placeholder="put your mail" aria-label="Recipient's email">
-                                       <div class="input-group-append">
-                                           <span class="input-group-text">EMAIL</span>
-                                       </div>
-                                   </div>
-                                   <div class="input-group inputs">
-                                       <div class="input-group-prepend">
-                                           <span class="input-group-text"> <i class="fa fa-lock" aria-hidden="true"></i> </span>
-                                       </div>
-                                       <input class="form-control" type="password" placeholder="put your password" aria-label="Recipient's password">
-                                       <div class="input-group-append">
-                                           <span class="input-group-text">PASSWORD</span>
-                                       </div>
-                                   </div>
-                                   <div class="input-group inputs">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text"> <i class="fa fa-lock" aria-hidden="true"></i> </span>
-                                        </div>
-                                        <input class="form-control" type="password" placeholder="confirm your password" aria-label="Recipient's password">
-                                        <div class="input-group-append">
-                                            <span class="input-group-text">PASSWORD</span>
-                                        </div>
-                                    </div>
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text"><i class="fas fa-file-image    "></i></span>
-                                        </div>
-                                        <input class="form-control" name="photo" id="photo" type="file" placeholder="Recipient's file" aria-label="Recipient's file">
-                                        <div class="input-group-append">
-                                            <span class="input-group-text">PHOTO</span>
-                                        </div>
-                                    </div>
-                               </form>
+                            <input class="form-control" type="email" name="email" id="email" placeholder="put your mail"
+                                   aria-label="Recipient's email">
+                            <div class="input-group-append">
+                                <span class="input-group-text">EMAIL</span>
                             </div>
-                 <div class="card-footer">
-                              <input class="btn btn-success btn-lg" style="width:100%" type="submit" form="inscrit" value="envoyer" >
-                      </div>
-             </div>
+                            
+                        </div>
+                        <div class="input-group inputs">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"> <i class="fa fa-user-circle" aria-hidden="true"></i> </span>
+                            </div>
+                            <input class="form-control" type="text" id="username" name="username"
+                                   placeholder="set your username" aria-label="Recipient's username">
+                            <div class="input-group-append">
+                                <span class="input-group-text">USERNAME</span>
+                            </div>
+
+                        </div>
+                        <div class="input-group inputs">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"> <i class="fa fa-lock" aria-hidden="true"></i> </span>
+                            </div>
+                            <input class="form-control" type="password" id="pass1" name="pass"
+                                   placeholder="put your password" aria-label="Recipient's password">
+                            <div class="input-group-append">
+                                <span class="input-group-text">PASSWORD</span>
+
+                            </div>
+                            
+                        </div>
+                        <div class="input-group inputs">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"> <i class="fa fa-lock" aria-hidden="true"></i> </span>
+                            </div>
+                            <input class="form-control" type="password" id="pass2" name="pass2"
+                                   placeholder="confirm your password" aria-label="Recipient's password">
+                            <div class="input-group-append">
+                                <span class="input-group-text">PASSWORD</span>
+                            </div>
+                            
+                        </div>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-file-image    "></i></span>
+                            </div>
+                            <input class="form-control" name="photo" id="photo" type="file"
+                                   placeholder="Recipient's file" aria-label="Recipient's file">
+                            <div class="input-group-append">
+                                <span class="input-group-text">PHOTO</span>
+                            </div>
+                            
+                        </div>
+                        <input type="text" class="ignore" hidden readonly name="action" value="register">
+                    </form>
+                </div>
+                <div class="card-footer">
+                    <input class="btn btn-success btn-lg" style="width:100%" type="submit" id="envoie" form="inscrit" name="action" value="register">
+
+                </div>
             </div>
+        </div>
     </div>
-    
-   
+
+
 </div>
+<!-- Modal -->
+<div class="modal fade " tabindex="-1" role="dialog" id="infoModal" aria-labelledby="infoModal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div id="preview" class="modal-content">
+                <div class="modal-content">
+                    <img src="" id="profilModalImg" class=" img img-fluid preview" alt="" >
+                    <h2>BIENVENUE</h2>
+                    <h3 class="email" id="infoUser">
+
+                    </h3>
+                </div>
+<div class="modal-footer">
+    <a type="button" href="connexion.html" class="btn btn-outline-primary btn-block">PAGE DE CONNEXION</a>
+</div>
+      </div>
+    </div>
+  </div>
 
 <script src="static/js/jquery-3.3.1.min.js"></script>
 <script src="static/js/bootstrap.js"></script>
 <script src="static/js/bootstrap.bundle.js"></script>
-<script src="static/js/jquery.validate.js"></script>
+<script src="static/js/jquery.validate.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
 <script src="static/js/all.js"></script>
+<script>
+    $(function () {
+
+
+        $('form#inscrit').validate({
+            debug: true,
+            //           onSubmit: false,
+            ignore: '.ignore',
+            errorClass: 'Verror',
+            validClass: 'Vsuccess',
+            success: 'valide',
+            errorElement : 'div',
+            errorLabelContainer: '.errorTxt',
+            rules: {
+                email: {
+                    required: true,
+                    email: true,
+                    minlength: 6,
+                    maxlength: 40
+                },
+                username: {
+                    required: true,
+                    minlength: 6,
+                    maxlength: 40
+                },
+                pass: {
+                    required: true,
+                    minlength: 5,
+                    maxlength: 100
+                },
+                pass2: {
+                    required: true,
+                    minlength: 5,
+                    maxlength: 100,
+                    equalTo:('#pass1')
+                },
+                photo:{
+                    require:false,
+                    accept:'image/*' ,
+                    extension:'png|jpeg|gif|jpg'
+                }
+            },
+            messages: {
+                email: {
+                    required: "vous devez avoir un email pour vous inscrire",
+                    email: "entrez une email valide",
+                    minlength: "vous email doit etre au dessus de 5 characteres",
+                    maxlength: 'votre email doit etre en dessous de 40 charactere'
+                },
+                username: {
+                    required: "vous devez avoir un email pour vous inscrire",
+                    minlength: "vous nom d'utilisateur doit etre au dessus de 5 characteres",
+                    maxlength: "votre nom d'utilisateur doit etre en dessous de 40 charactere"
+                },
+                pass: {
+                    required: 'le mot de passe est exigez',
+                    minlength: 'votre mot de pass doit contenir au moins 5 charactere',
+                    maxlength: 'votre mot de pass ne doit pas depasser 100 charactere'
+                },
+                pass2: {
+                    required: 'la verification du mot de passe est requise',
+                    minlength: 'votre mot de passe ne doit pas depasser 5 charactere',
+                    maxlength: 'votre mot de passe ne doit pas depasser 100 charactere',
+                    equalTo:'Vos deux mot de passe ne sont pas identique'
+                },
+                photo:{
+                    accept:'le fichier choisi doit etre une image',
+                    extension:'l\'image doit etre de l\'extension jpg,jpeg,png ou gif'
+                }
+            },
+            highlight: function (element, error, success) {
+                $(element).addClass('Verror').removeClass('Vsuccess');
+            },
+            unHighlight: function (element, error, success) {
+                $(element).addClass(success).removeClass(error);
+            },
+            submitHandler: function (form) {
+                var formData = new FormData(form);
+                $.ajax({
+                    url: '../controller/user_controller.php',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: formData,
+                    success: function (data) {
+                        if (data.preview) {
+                            let img = $('#profilModalImg')
+                            let modal=$('#infoModal')
+                            let info=$('#infoUser');
+                            let user=$('#username').val()
+                            $(info).text(user)
+                            $(img).attr('src', data.preview)
+                            $(modal).modal('show');
+
+                        } else if(!data.status){
+                            let img = $('#profilModalImg')
+                            let modal = $('#infoModal')
+                            let info=$('#infoUser')
+                            let src="static\/img/user_file\/default_user.jpg";
+                            let user=$('#username').val()
+                            $(info).text(user)
+                            $(img).attr('src',src)
+                            $(modal).modal('show');
+                        }
+
+                    },
+                    error:function(data){
+                        var alert="<div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\" \><button type=\"button\"  data-dismiss=\"alert\" aria-label=\"alert\"> <span aria-hidden=\"true\">\&times;</span></button> \<a href=\"#\" class=\"alert-link\">impossible de vous inscrire </div>"
+                        $(alert).insertBefore('.container-fluid')
+                    },
+                    cache: false,
+                    contentType: false,
+                    processData: false
+                });
+            },
+            invalidHandler: function (event, validator) {
+                var errors = validator.numberOfInvalids();
+                if (errors) {
+                    var message = errors == 1 ? 'il y\' a  1 champ incorrect veuillez le remplir pour continuer ' : 'vous avez ' + errors + ' chapms incorrect';
+                    var alert="<div class=\"alert alert-danger alert-dismissible fade show\" id=\"alert\" role=\"alert\" \><button type=\"button\"  data-dismiss=\"alert\" aria-label=\"alert\"> <span aria-hidden=\"true\">\&times;</span></button> \<a href=\"#\" class=\"alert-link\"> "+message+"\</div>"
+                    $(alert).insertBefore('.container-fluid')
+                } else {
+                    alert('erreur systeme')
+                }
+            }
+        })
+    })
+</script>
 </body>
 </html>
