@@ -50,7 +50,7 @@ if (isset($_GET)) {
                aria-controls="gestionAdmin" aria-selected="false">gestion de materiels</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link " id="gestionAdmin-tab" href="admin_map.php" >gestion de materiels</a>
+            <a class="nav-link " id="gestionAdmin-tab" href="admin_map.php" >carte administrateur</a>
         </li>
         <li class="nav-item ml-4">
             <button class="btn btn-block btn-outline-danger" id="deconnexion" value="logout">deconnexion</button>

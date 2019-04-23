@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (empty($_SESSION)) {
-    header('Location:connexion.php');
+    header('Location:connexion.html');
 }
 ?>
 
