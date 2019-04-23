@@ -171,7 +171,7 @@ if (empty($_SESSION)) {
 
 <div class="container">
     <div class="row">
-        <div class="col-md-46 animated fadeInDownBig">
+        <div class="col-md-8 animated fadeInDownBig">
             <div class="jumbotron jumbotron-fluid">
                 <div class="container">
                     <h5 class="display-5">Email: <?= $_SESSION['email'] ?></h5>
@@ -190,7 +190,7 @@ if (empty($_SESSION)) {
                 <input id="userId" value="<?= $_SESSION['id'] ?>" disabled readonly hidden/>
             </div>
         </div>
-        <div class="col-md-3 outils animated fadeInRightBig ">
+        <div class="col-md-4 outils animated fadeInRightBig ">
 
         </div>
     </div>
