@@ -332,7 +332,7 @@ if (empty($_SESSION)) {
         }
 
         this.map.setView([this.lat, this.lng], 16);
-        this.setCircle([this.lat, this.lng], this.milesToMeters(5));
+        this.setCircle([this.lat, this.lng], this.milesToMeters(0.03));
     };
 
     Map.prototype.getCurrentLocation = function (success, error) {
@@ -455,7 +455,7 @@ if (empty($_SESSION)) {
                     dataType:'json',
                     data:{action:'insert',lat:latitude,lng:longitude},
                     success:function(data){
-                        alert('success')
+                        window.location.reload()
                     },
                     error:function(){
                         alert('error')
@@ -469,7 +469,7 @@ if (empty($_SESSION)) {
             type: 'POST',
             url: '../controller/map_controller.php',
             dataType: 'json',
-            data: {action: 'select'},
+            data: {action: 'selectAll'},
             success: function (data) {
                 let Mdata = data.data
                 if (Mdata.length != 0) {
@@ -506,6 +506,7 @@ if (empty($_SESSION)) {
                                 }
                             })
                         } else {
+
                             let custonIcon = L.icon({
                                 iconUrl: 'static/img/maps_icons/icone_verte_home.png',
                                 iconSize: [50, 50]
@@ -516,13 +517,13 @@ if (empty($_SESSION)) {
                             }
 //                    let form=formulaire pour demander confirmation de marker
                             let markerOptions = {
-                                title: user.pseudo,
+                                title: user.username,
                                 clickable: true,
                                 draggable: false,
                                 icon: custonIcon
                             }
                             let mark = L.marker([user.lat, user.lng], markerOptions);
-                            console.dir(mark)
+
                             L.marker([json.lat, json.lng], markerOptions).addTo(map.map).bindPopup(mark.options.title).openPopup();
                             let LGrp = L.layerGroup([mark])
                             LGrp.eachLayer(function (obj) {
@@ -531,8 +532,8 @@ if (empty($_SESSION)) {
                                     // and draw a circle at that position
 
                                     L.circle(obj.getLatLng(), 35, {
-                                        color: 'blue',
-                                        fillColor: 'blue'
+                                        color: 'green',
+                                        fillColor: 'green'
                                     }).addTo(map.map);
                                 }
                             })

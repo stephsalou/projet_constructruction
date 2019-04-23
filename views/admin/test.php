@@ -1,4 +1,6 @@
-
+<?php session_start();
+session_destroy();
+?>
 <html>
 <head>
     <meta charset="UTF-8">

@@ -15,7 +15,18 @@ if(isset($_POST) && !empty($_POST) && !empty($_SESSION)){
                 'npq'=>'id=\''.$userId.'\''
             ];
             $result=user::deleteUser($db,$cond);
-            echo json_encode($result);
+            if($result){
+            $data=[
+                'status'=>true,
+                'data'=>$result['data']
+            ];
+        }else{
+            $data=[
+                'status'=>false,
+                'message'=>'impossible de supprimer les donnees'
+            ];
+            }
+            echo json_encode($data);
             break;
         default:
             $data=[

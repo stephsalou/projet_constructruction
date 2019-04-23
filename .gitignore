@@ -1,0 +1,9 @@
+# Created by .ignore support plugin (hsz.mobi)
+# IntelliJ project files
+.idea
+*.iml
+out
+gen
+/views/admin/test.php
+/views/admin/insertadmin.php
+/views/template.php

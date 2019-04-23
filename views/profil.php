@@ -17,8 +17,6 @@ if (empty($_SESSION)) {
     <link rel="stylesheet" href="static/css/all.min.css">
     <link rel="stylesheet" href="static/css/animate.css">
     <link rel="icon" type="icon/png" href="static/img/maps_icons/icon-1.png">
-    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css"/>
-    <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
     <title>acceuil</title>
 </head>
 
@@ -94,45 +92,7 @@ if (empty($_SESSION)) {
         padding-bottom: 0px;
     }
 
-    /*map style*/
-    #map {
-        /*position: absolute;*/
-        margin: 0 auto;
-        top: 35px;
-        bottom: 25px;
-        right: 25px;
-        height: 80vh;
-        width: 150vh;
-        max-width: 100%;
-        left: 25px;
-        box-shadow: 0 4px 16px 0 black;
-    }
-
-    #map > div {
-        /*position: absolute;*/
-        /*top: 0;*/
-        max-width: 100%;
-        width: 100%;
-        height: 100%;
-        z-index: 0;
-    }
-
-    #map.show-message {
-        pointer-events: none;
-    }
-
-    #map.map-overlay {
-        display: none;
-        z-index: 2;
-    }
-
-    #map.show-message .map-overlay {
-        display: block;
-        background: rgba(0, 0, 0, 0.5);
-        text-align: center;
-        color: #eee;
-        text-shadow: 0 -1px 1px black;
-    }
+    
 </style>
 
 <header>
@@ -211,13 +171,7 @@ if (empty($_SESSION)) {
 
 <div class="container">
     <div class="row">
-        <div class="col-md-5 animated fadeInLeftBig ">
-            <div id="map">
-                <div class="map-overlay"></div>
-                <div class="map-container"></div>
-            </div>
-        </div>
-        <div class="col-md-4 animated fadeInDownBig">
+        <div class="col-md-46 animated fadeInDownBig">
             <div class="jumbotron jumbotron-fluid">
                 <div class="container">
                     <h5 class="display-5">Email: <?= $_SESSION['email'] ?></h5>
@@ -249,196 +203,7 @@ if (empty($_SESSION)) {
 <script src="static/js/jquery.validate.min.js"></script>
 <script src="static/js/all.js"></script>
 <script>
-    ///map script///
-    ////  static simple map
-    var Map = function (elem, lat, lng) {
-        this.$el = $(elem);
-        this.$overlay = this.$el.find('.map-overlay');
-        this.$map = this.$el.find('.map-container');
-        this.init(lat, lng);
-
-
-    };
-    Map.prototype.init = function (lat, lng) {
-
-        this.lat = lat;
-        this.lng = lng;
-
-        this.map = L.map(this.$map[0]).setView([lat, lng], 13);
-
-        var osmUrl = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
-        var mapTiles = new L.TileLayer(osmUrl, {
-            attribution: 'Map data &copy; '
-            + '<a href="http://openstreetmap.org">OpenStreetMap</a> contributors, '
-            + '<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
-            maxZoom: 18
-        });
-
-        this.map.addLayer(mapTiles);
-    };
-    Map.prototype.setLatLng = function (latLng) {
-        this.lat = latLng.lat;
-        this.lng = latLng.lng;
-
-        if (this.circle) {
-            this.circle.setLatLng(latLng);
-        }
-    };
-    Map.prototype.getCurrentLocation = function (success, error) {
-
-        var self = this;
-
-        var onSuccess = function (lat, lng) {
-            success(new L.LatLng(lat, lng));
-        };
-
-        // get location via geoplugin.net.
-        // Typically faster than browser's geolocation, but less accurate.
-        var geoplugin = function () {
-            jQuery.getScript('http://www.geoplugin.net/javascript.gp', function () {
-                onSuccess(geoplugin_latitude(), geoplugin_longitude());
-            });
-        };
-
-        // get location via browser's geolocation.
-        // Typically slower than geoplugin.net, but more accurate.
-        var navGeoLoc = function () {
-            navigator.geolocation.getCurrentPosition(function (position) {
-                success(new L.LatLng(position.coords.latitude, position.coords.longitude));
-            }, function (positionError) {
-                geoplugin();
-                error(positionError.message);
-            });
-        };
-
-        if (navigator.geolocation) {
-            navGeoLoc();
-        }
-        else {
-            geoplugin();
-        }
-    };
-
-    Map.prototype.dismissMessage = function () {
-        this.$el.removeClass('show-message');
-        this.$overlay.html('');
-    };
-
-    Map.prototype.showMessage = function (html) {
-        this.$overlay.html('<div class="center"><div>' + html + '</div></div>');
-        this.$el.addClass('show-message');
-    };
-
-    // Conversion Helpers
-
-    Map.prototype.milesToMeters = function (miles) {
-        return miles * 1069;
-    };
-
-    jQuery(function ($) {
-
-        // clear than temporary background image
-        $('.map-container').css('background', 'transparent');
-
-        var map = new Map('#map', 51.505, -0.09);
-
-        map.showMessage('<p><span>Acquiring Current Location.</span><br /><br />'
-            + '<span>Please ensure the app has permission to access your location.</span></p>');
-
-        map.getCurrentLocation(function (latLng) {
-            map.dismissMessage();
-        }, function (errorMessage) {
-            map.showMessage('<p><span>Location Error:</span><br /><br />'
-                + '<span>' + errorMessage + '</span></p>');
-        });
-
-        var s = $('select').on('change', function (e) {
-            var value = $(this).val();
-            var meters = map.milesToMeters(value);
-            map.setCircle([map.lat, map.lng], meters);
-        });
-        $(function () {
-// ajax recuperation marker user position
-            let id = $('#userId').val()
-            $.ajax({
-                type: 'POST',
-                url: '../controller/map_controller.php',
-                dataType: 'json',
-                data: {action: 'selectUser', id: id},
-                success: function (data) {
-                    let Mdata = data.data
-                    if (Mdata.length != 0) {
-                        Mdata.forEach(function (user) {
-                            if (user.status == 0) {
-                                let custonIcon = L.icon({
-                                    iconUrl: 'static/img/maps_icons/icon-3.png',
-                                    iconSize: [50, 50]
-                                })
-                                let json = {
-                                    'lng': user.lng,
-                                    'lat': user.lat
-                                }
-                                let markerOptions = {
-                                    title: 'en attente de confirmation',
-                                    clickable: true,
-                                    draggable: false,
-                                    icon: custonIcon
-                                }
-                                let mark = L.marker([user.lat, user.lng], markerOptions);
-                                console.dir(mark)
-                                L.marker([json.lat, json.lng], markerOptions).addTo(map.map).bindPopup(mark.options.title).openPopup();
-                                let LGrp = L.layerGroup([mark])
-                                LGrp.eachLayer(function (obj) {
-                                    if (obj instanceof L.Marker) { // test if the object is a marker
-                                        // get the position of the marker with getLatLng
-                                        // and draw a circle at that position
-
-                                        L.circle(obj.getLatLng(), 35, {
-                                            color: 'blue',
-                                            fillColor: 'blue'
-                                        }).addTo(map.map);
-                                    }
-                                })
-                            } else {
-                                let custonIcon = L.icon({
-                                    iconUrl: 'static/img/maps_icons/icone_verte_home.png',
-                                    iconSize: [50, 50]
-                                })
-                                let json = {
-                                    'lng': user.lng,
-                                    'lat': user.lat
-                                }
-                                let markerOptions = {
-                                    title: user.pseudo,
-                                    clickable: true,
-                                    draggable: false,
-                                    icon: custonIcon
-                                }
-                                let mark = L.marker([user.lat, user.lng], markerOptions);
-                                console.dir(mark)
-                                L.marker([json.lat, json.lng], markerOptions).addTo(map.map).bindPopup(mark.options.title).openPopup();
-                                let LGrp = L.layerGroup([mark])
-                                LGrp.eachLayer(function (obj) {
-                                    if (obj instanceof L.Marker) { // test if the object is a marker
-                                        // get the position of the marker with getLatLng
-                                        // and draw a circle at that position
-
-                                        L.circle(obj.getLatLng(), 35, {
-                                            color: 'blue',
-                                            fillColor: 'blue'
-                                        }).addTo(map.map);
-                                    }
-                                })
-                            }
-                        })
-                    } else {
-                        console.log('donnes vide')
-                    }
-                },
-                error: function () {
-                    alert('error')
-                }
-            })
+   $(function(){
             //////user script//
 
             $('#deconnexion').on('click', function (e) {
@@ -494,7 +259,7 @@ if (empty($_SESSION)) {
             })
 
 
-        })
+        
 //ajax recuperation des probabiliter de materiaux
         let id=$('#userId').val()
         $.ajax({

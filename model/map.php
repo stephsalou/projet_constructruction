@@ -8,7 +8,7 @@ class map extends db_operation
     {
         if($cond==null){
         $cond=[
-            'or'=>'status=0'
+            'or'=>'status=1'
         ];
         }
         $result=self::selectJoin(self::$db_table,'*',$db,$cond);
@@ -33,7 +33,67 @@ class map extends db_operation
     public static function selectJoin($db_table, $db_column = '*', $db, array $cond = null, $file_path = '../views/static/img/user_file/')
     {
         if ($cond == null) {
-            $sql = "SELECT " . $db_column . " FROM " . $db_table. " INNER JOIN user ON user.id=".$db_table.".userId ";
+            $sql = "SELECT ".$db_table.".id ," . $db_column . " FROM " . $db_table. "  INNER JOIN user ON user.id =".$db_table.".userId";
+            $data = $db->query($sql, PDO::FETCH_ASSOC);
+            $c = $data->columnCount();
+            for ($i = 0; $i < $c; $i++) {
+                $colMeta[$i] = $data->getColumnMeta($i);
+                $colName[$i] = $colMeta[$i]['name'];
+            }
+            $data = $data->fetchAll();
+            if (isset($data[0]['image'])) {
+                for ($j = 0; $j < sizeof($data); $j++) {
+                    $path[$j] = $file_path.$data[$j]['image'];
+                    $data[$j]['image'] = $path[$j];
+                }
+            }
+            $result = array(
+                'data' => $data,
+                'column' => $colName
+            );
+        } else {
+            $i = 0;
+            $sql = "SELECT " . $db_column . " FROM " . $db_table . " INNER JOIN user ON user.id=".$db_table.".userId WHERE ";
+            foreach ($cond as $key => $condition ) {
+                if ($i == 0)
+                    $sql .= $condition;
+                else
+                    $sql .=' '.$key.' '. $condition;
+
+                $i++;
+            }
+            $data = $db->query($sql, PDO::FETCH_ASSOC);
+            if($data){
+                $c = $data->columnCount();
+                for ($i = 0; $i < $c; $i++) {
+                    $colMeta[$i] = $data->getColumnMeta($i);
+                    $colName[$i] = $colMeta[$i]['name'];
+                }
+                $data = $data->fetchAll();
+                if (isset($data[0]['image'])) {
+                    for ($j = 0; $j < sizeof($data); $j++) {
+                        $path[$j] = $file_path.$data[$j]['image'];
+                        $data[$j]['image'] = $path[$j];
+                    }
+                }
+                $result = array(
+                    'data' => $data,
+                    'column' => $colName
+                );
+            }else{
+                $result = array(
+                    'status' => false,
+                    'message' => 'erreur'
+                );
+            }
+        }
+        return $result;
+    }
+
+    public static function selectJoin_map($db_table,$db_column='*',$db,array $cond=null,$file_path='../views/static/img/user_file/')
+    {
+        if ($cond == null) {
+            $sql = "SELECT ". $db_table.".id ,". $db_column . " FROM " . $db_table. "  INNER JOIN user ON user.id =".$db_table.".userId";
             $data = $db->query($sql, PDO::FETCH_ASSOC);
             $c = $data->columnCount();
             for ($i = 0; $i < $c; $i++) {
@@ -98,7 +158,7 @@ class map extends db_operation
 
     public static function select_all_coordinate($db,array $cond=null)
     {
-        $result=self::selectJoin(self::$db_table,'*',$db,$cond);
+        $result=self::selectJoin_map(self::$db_table,'lat,lng,status,username',$db,$cond);
         return $result;
     }
 
