@@ -13,7 +13,7 @@ if(!empty($_POST)){
         $username,
         $password
     ];
-    $data=db_operation::insertData('admin','username,password',$formdata,$db);
+    $data=db_query::insertData('admin','username,password',$formdata,$db);
     if($data['status']){
         echo 'success enregistrer a l\'id '.$data['data'];
     }

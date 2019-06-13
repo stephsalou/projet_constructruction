@@ -239,6 +239,7 @@
                 $(element).addClass(success).removeClass(error);
             },
             submitHandler: function (form) {
+                console.dir(form)
                 var formData = new FormData(form);
                 $.ajax({
                     url: '../controller/user_controller.php',

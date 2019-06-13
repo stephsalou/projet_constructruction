@@ -6,7 +6,7 @@
  * Date: 20/04/2019
  * Time: 19:24
  */
-class admin extends db_operation
+class admin extends db_query
 {
 
     private static $db_table='admin';

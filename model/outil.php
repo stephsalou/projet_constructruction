@@ -5,13 +5,13 @@
  * Date: 18/04/2019
  * Time: 17:41
  */
-class outil extends db_operation
+class outil extends db_query
 {
     protected static $db_table='materiaux';
     protected  static $db_column='sable,ciment,gravier,bois,userId';
     public static function insertMatData($db, $formData)
     {
-        $data=db_operation::insertData(self::$db_table,self::$db_column,$formData,$db);
+        $data=db_query::insertData(self::$db_table,self::$db_column,$formData,$db);
 
         return $data;
 
@@ -20,7 +20,7 @@ class outil extends db_operation
     public static function selectMatData($db,array $cond=null)
     {
 
-        $data=db_operation::selectData(self::$db_table,'*',$db,$cond);
+        $data=db_query::selectData(self::$db_table,'*',$db,$cond);
 
         return $data;
 

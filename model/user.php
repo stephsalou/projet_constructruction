@@ -5,7 +5,7 @@
  * Date: 13/04/2019
  * Time: 19:39
  */
-class user extends db_operation
+class user extends db_query
 {
     private static $db_table='user';
     private static $db_column='email,password,username,image';
@@ -37,7 +37,7 @@ class user extends db_operation
 
     public static function select_all_user($db,$path)
     {
-        $data=db_operation::selectData(self::$db_table,'*',$db,null,$path);
+        $data=db_query::selectData(self::$db_table,'*',$db,null,$path);
         return $data;
     }
 

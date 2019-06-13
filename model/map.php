@@ -1,6 +1,6 @@
 <?php
 
-class map extends db_operation
+class map extends db_query
 {
     protected static $db_table='map';
     protected static $db_column='lat,lng,userId';
@@ -17,7 +17,7 @@ class map extends db_operation
 
     public static function insert_coord($db,$coordinate){
 
-        $result=db_operation::insertData(self::$db_table,self::$db_column,$coordinate,$db);
+        $result=db_query::insertData(self::$db_table,self::$db_column,$coordinate,$db);
 
         return $result;
 
@@ -25,7 +25,7 @@ class map extends db_operation
 
     public static function set_status($db,$form_data,array $cond)
     {
-        $result=db_operation::modifData(self::$db_table,'status',$cond,$form_data,$db);
+        $result=db_query::modifData(self::$db_table,'status',$cond,$form_data,$db);
 
         return $result;
     }
